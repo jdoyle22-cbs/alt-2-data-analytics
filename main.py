@@ -13,9 +13,9 @@ except IndexError:
 print(
 """
    _   _  _____ ___ 
-  /_\ | ||_   _|_  )
- / _ \| |__| |  / / 
-/_/ \_\____|_| /___|
+  /_\\ | ||_   _|_  )
+ / _ \\| |__| |  / / 
+/_/ \\_\\____|_| /___|
 
 ========================================
 Data Analytics
@@ -43,11 +43,13 @@ print("\nReading data file...")
 # Attempt to write to file, handling errors
 try:
    with open(f"{filename if filename else "movies"}.csv", "r") as file:
+      if len(file) == 0: # Handle errors where the file is empty, e.g. HTTP based errors
+         raise IOError
       main_loop(file)
 except IOError:
    print("The file could not be read.")
-   print("1. Is it being used by another program?")
-   print("2. Does it exist?")
+   print("1. Does it exist? Make sure it has been downloaded at least once.")
+   print("2. Is it being used by another program?")
    print("3. Does this program have the correct filesystem permissions to access it?")
 except Exception as e:
    print("The following error occurred: ", str(e))
