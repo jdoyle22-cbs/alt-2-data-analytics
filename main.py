@@ -16,13 +16,15 @@ print(
 Data Analytics
 ========================================
 
+Hypothesis: Action films make the most money out of any genre
+
 """
 )
 
 download_data(filename) # Prompt user to redownload data if they wish
 
-def main_loop(file: File):
-   print("TBD")
+def main_loop(file: File) -> None:
+   print("Retrieving necessary data...")
 
 print("Reading data file...")
 
