@@ -5,7 +5,7 @@ Downloads the dataset from Kaggle and writes to the specified file
 """
 def download_data(filename: str = "movies") -> Dict[Bool, str]:
     # Make sure the user wants to do this, as it's wasteful if not needed
-    if input("Download the dataset from Kaggle? [Y/N]: ") == "n"
+    if input("Download the dataset from Kaggle? [Y/N]: ").lower() == "n":
         return [False, ""]
 
     # Taken from inspecting Kaggle's network calls
@@ -13,7 +13,7 @@ def download_data(filename: str = "movies") -> Dict[Bool, str]:
 
     response = requests.get(url)
     print("Status code:", response.status_code)
-    if response.status_code !== 200:
+    if response.status_code != 200:
         return [False, "Error while attempting to retrieve dataset from URL, cancelling..."]
 
     # Attempt to write to file, handling errors
@@ -24,4 +24,4 @@ def download_data(filename: str = "movies") -> Dict[Bool, str]:
     except IOError:
         return [False, "The file could not be written to. Is it being used by another program?"]
     except Exception as e:
-        return [False, "The following error occurred: " + e]
+        return [False, "The following error occurred: " + str(e)]
