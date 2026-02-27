@@ -49,6 +49,7 @@ try:
 except IOError:
    print("The file could not be read.")
    print("1. Does it exist? Make sure it has been downloaded at least once.")
+   print("2. Does it contain data? It may have failed to download correctly.")
    print("2. Is it being used by another program?")
    print("3. Does this program have the correct filesystem permissions to access it?")
 except Exception as e:
