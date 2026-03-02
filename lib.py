@@ -1,22 +1,9 @@
 from colorama import Style, Back
 from collections import Counter
-
-#def mode(data: list[int | float]) -> int | float:
-#    # Make sure we actually have data to use
-#    if not data:
-#        raise ValueError("Cannot compute mode of empty list")
-#    
-#    stored_values: dict[int | float, int] = {}
-#
-#    try:
-#        for value in data:
-#            stored_values[value] = stored_values.get(value, 0) + 1
-#            
-#        return max(stored_values, key=stored_values.get)
-#    except Exception as e:
-#        print(error(str(e)))
-#        exit(-1)
         
+"""
+Return the mode of a list of numbers
+"""
 def mode(data: list[int | float]) -> int | float:
     # Make sure we actually have data to use
     if not data:
@@ -25,13 +12,36 @@ def mode(data: list[int | float]) -> int | float:
     cnt = Counter(data)
     return cnt.most_common(1)[0][0]
 
+"""
+Return the median value of a list of number values
+"""
 def median(data: list[int | float]) -> int | float:
-    print("TBD")
-    return -1
+    n: int = len(data)
+    is_even: bool = (n % 2) == 0
+    
+    if not data or n == 0: # If there's no data
+        raise ValueError("Cannot compute median of empty list")
+    
+    data.sort() # Needs to be sorted for median calculation
+    
+    # If odd, then return the middle data value
+    if not is_even:
+        return data[n // 2]
+    else:
+        return (data[(n // 2) - 1] + data[(n // 2)]) / 2
 
+"""
+Return the mean value of a list of number values
+"""
 def mean(data: list[int | float]) -> int | float:
-    print("TBD")
-    return -1
+    n: int = len(data)
+    
+    if not data or n == 0: # If there's no data
+        raise ValueError("Cannot compute mean of empty list")
+    
+    # Calculating mean is very simple
+    # Sum of values divided by number of values
+    return sum(data) / (n)
 
 # Terminal styling
 

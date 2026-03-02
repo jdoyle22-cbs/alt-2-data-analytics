@@ -1,6 +1,6 @@
 from colorama import Style
 import csv
-from lib import bold, mode
+from lib import bold, mode, median, mean
 from typing import Iterable
 
 def read_data(file: Iterable[str]) -> None:
@@ -22,4 +22,7 @@ def read_data(file: Iterable[str]) -> None:
 
     print(bold("\n-------------------- Retrieved Data --------------------\n"))
     print(bold("Total no. of rows:") + " " + str(csvreader.line_num if csvreader.line_num else "Unable to determine"))
-    print(mode(revenues))
+    print()
+    print("Revenue Mode:", mode(revenues))
+    print("Median Revenue:", median(revenues))
+    print("Mean Revenue:", mean(revenues))
