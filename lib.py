@@ -1,5 +1,8 @@
-from colorama import Style, Back
 from collections import Counter
+from rich.console import Console
+
+# Rich Console
+console = Console()
         
 """
 Return the mode of a list of numbers
@@ -42,14 +45,3 @@ def mean(data: list[int | float]) -> int | float:
     # Calculating mean is very simple
     # Sum of values divided by number of values
     return sum(data) / (n)
-
-# Terminal styling
-
-def bold(message: str):
-    return(Style.BRIGHT + message + Style.RESET_ALL)
-
-def error(message: str):
-    return(Style.BRIGHT + Back.RED + " " + message + " " + Style.RESET_ALL)
-
-def success(message: str):
-    return(Style.BRIGHT + Back.GREEN + " " + message + " " + Style.RESET_ALL)

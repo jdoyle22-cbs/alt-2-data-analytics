@@ -1,28 +1,36 @@
-from colorama import Style
 import csv
-from lib import bold, mode, median, mean
+from lib import mode, median, mean
 from typing import Iterable
+from lib import console
+from rich import rule
 
 def read_data(file: Iterable[str]) -> None:
-    print(Style.BRIGHT + "Retrieving necessary data from dataset..." + Style.RESET_ALL)
+    console.print("Retrieving necessary data from dataset...", style="bold")
     csvreader = csv.DictReader(file, delimiter=',') # Read the CSV
     movie_count: int = 0 # How many movies are in the specified genre
     revenues: list[float] = [] # A list of all the revenues of these movies
     
+    # Iterate through all the rows
     for row_num, row in enumerate(csvreader, start=1):
-        if not row:
-            print(f"Skipping empty row {row_num}")
+        if not row: # Empty rows are skipped, no point adding them
+            console.print(f"Skipping empty row {row_num}", style="bold")
             continue
 
-        if "Action" in row["genres"]: # Only look at action movies
+        # Limit to action movies
+        if "Action" in row["genres"]:
             movie_count += 1
             if int(row["revenue"]) != 0: # Skip movies with zero revenue (or more likely missing data)
-                revenues.append(float(row["revenue"]))
-    print("Total movies matching criteria:", movie_count)
+                try:
+                    revenues.append(float(row["revenue"]))
+                except ValueError: # If this fails, e.g. conversion error
+                    # Skip adding the revenue and continue on with the other movies
+                    continue
+                
+    console.print("[bold]Total no. of rows:[/]" + " " + str(csvreader.line_num if csvreader.line_num else "[bold red]Unable to determine[/]"))
+    console.print("Total movies matching criteria:", movie_count, style="bold")
 
-    print(bold("\n-------------------- Retrieved Data --------------------\n"))
-    print(bold("Total no. of rows:") + " " + str(csvreader.line_num if csvreader.line_num else "Unable to determine"))
-    print()
-    print("Revenue Mode:", mode(revenues))
-    print("Median Revenue:", median(revenues))
-    print("Mean Revenue:", mean(revenues))
+    console.print(rule.Rule(title="Calculated Data", end="\n"))
+    console.print()
+    console.print("[bold]Revenue Mode:[/]", mode(revenues))
+    console.print("[bold]Median Revenue:[/]", median(revenues))
+    console.print("[bold]Mean Revenue:[/]", mean(revenues))
