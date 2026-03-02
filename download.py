@@ -4,7 +4,7 @@ from colorama import Style, Back
 """
 Downloads the dataset from Kaggle and writes to the specified file
 """
-def download_data(filename: str = "movies") -> Dict[Bool, str]:
+def download_data(filename: str = "movies") -> list[bool | str]:
     # Make sure the user wants to do this, as it's wasteful if not needed
     if input(Style.BRIGHT + "Download the dataset from Kaggle? [Y/N]: " + Style.RESET_ALL).lower() == "n":
         return [False, ""]
@@ -20,7 +20,7 @@ def download_data(filename: str = "movies") -> Dict[Bool, str]:
     # Attempt to write to file, handling errors
     try:
         with open(f"{filename if filename else "movies"}.csv", "w") as file:
-            file.write(response.content)
+            file.write(str(response.content))
         return [True, Style.BRIGHT + Back.RED + "Data successfully downloaded." + Style.RESET_ALL]
     except IOError:
         return [False, Style.BRIGHT + Back.RED + "The file could not be written to. Is it being used by another program?" + Style.RESET_ALL]

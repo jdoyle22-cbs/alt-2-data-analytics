@@ -1,15 +1,17 @@
-from colorama import Fore, Back, Style
+from colorama import Style
 import csv
 from lib import bold, mode
+from typing import Iterable
 
-def read_data(file: File) -> None:
+def read_data(file: Iterable[str]) -> None:
     print(Style.BRIGHT + "Retrieving necessary data from dataset..." + Style.RESET_ALL)
     csvreader = csv.reader(file, delimiter=',') # Read the CSV
-    rows = []
-    movie_count: int = 0
-    revenues: list = []
+    rows: list[str] = [] # The rows in the csv file
+    movie_count: int = 0 # How many movies are in the specified genre
+    revenues: list[float] = [] # A list of all the revenues of these movies
     
     for row_num, row in enumerate(csvreader, start=1):
+        print("Type of row:", type(row))
         if not row:
             print(f"Skipping empty row {row_num}")
             continue
