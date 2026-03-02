@@ -36,3 +36,6 @@ def bold(message: str):
 
 def error(message: str):
     return(Style.BRIGHT + Back.RED + " " + message + " " + Style.RESET_ALL)
+
+def success(message: str):
+    return(Style.BRIGHT + Back.GREEN + " " + message + " " + Style.RESET_ALL)

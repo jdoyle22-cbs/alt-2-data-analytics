@@ -7,11 +7,11 @@ from read_data import read_data
 just_fix_windows_console()
 
 # Handle CLI arguments
-filename: str = "movies"
+filename: str = "tmdb_5000_movies"
 try:
-   filename: str = sys.argv[1] if sys.argv[1] else "movies" # Default to movies if custom filename not specified
+   filename: str = sys.argv[1] if sys.argv[1] else "tmdb_5000_movies" # Default to 'tmdb_5000_movies' if custom filename not specified
 except IndexError:
-   filename: str = "movies"
+   filename: str = "tmdb_5000_movies"
 
 # Welcome message
 print(Style.BRIGHT +
@@ -30,7 +30,7 @@ Hypothesis: Action films make the most money out of any genre
 """
 + Style.RESET_ALL)
 
-data_download_result = download_data(filename) # Prompt user to redownload data if they wish
+data_download_result = download_data() # Prompt user to redownload data if they wish
 
 if data_download_result[0] == False and data_download_result[1] != "":
    print(Back.RED + Style.BRIGHT + "Exiting due to error..." + Style.RESET_ALL)
@@ -41,7 +41,7 @@ print(Style.BRIGHT + "\nReading data file..." + Style.RESET_ALL)
 # Attempt to write to file, handling errors
 try:
    # Encoding (UTF-8) *has* to be specified for Python to work with it
-   with open(f"{filename if filename else "movies"}.csv", "r", encoding="utf-8") as file:
+   with open(f"./data/{filename if filename else "tmdb_5000_movies"}.csv", "r", encoding="utf-8") as file:
       read_data(file)
 except FileNotFoundError:
    print(Style.BRIGHT + Back.RED + "Dataset file could not be found. Make sure it exists in the directory" + Style.RESET_ALL)   
