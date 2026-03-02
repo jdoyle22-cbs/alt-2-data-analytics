@@ -16,7 +16,8 @@ def read_data(file: Iterable[str]) -> None:
 
         if "Action" in row["genres"]: # Only look at action movies
             movie_count += 1
-            revenues.append(float(row["revenue"]))
+            if int(row["revenue"]) != 0: # Skip movies with zero revenue (or more likely missing data)
+                revenues.append(float(row["revenue"]))
     print("Total movies matching criteria:", movie_count)
 
     print(bold("\n-------------------- Retrieved Data --------------------\n"))
