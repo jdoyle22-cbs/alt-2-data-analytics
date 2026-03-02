@@ -1,4 +1,4 @@
-from colorama import Style, Fore, Back
+from colorama import Style, Back
 
 def mode(data: list):
     stored_values: dict[int, int] = {}

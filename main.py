@@ -1,7 +1,5 @@
 from download import download_data
 import sys
-import csv
-import os
 from colorama import just_fix_windows_console, Fore, Back, Style
 from read_data import read_data
 
