@@ -3,6 +3,7 @@ from lib import mode, median, mean
 from typing import Iterable
 from lib import console
 from rich import rule
+import plotext as plt # pyright: ignore[reportMissingTypeStubs]
 
 def read_data(file: Iterable[str]) -> None:
     console.print("Retrieving necessary data from dataset...", style="bold")
