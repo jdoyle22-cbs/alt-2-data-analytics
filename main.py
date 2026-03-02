@@ -3,6 +3,7 @@ import sys
 import csv
 import os
 from colorama import just_fix_windows_console, Fore, Back, Style
+from read_data import read_data
 
 # Make ANSI color codes work in windows
 just_fix_windows_console()
@@ -37,29 +38,13 @@ if data_download_result[0] == False and data_download_result[1] != "":
    print(Back.RED + Style.BRIGHT + "Exiting due to error..." + Style.RESET_ALL)
    sys.exit(0)
 
-def main_loop(file: File) -> None:
-   print(Style.BRIGHT + "Retrieving necessary data from dataset..." + Style.RESET_ALL)
-   csvreader = csv.reader(file) # Read the CSV
-   rows = []
-   
-   fields = next(csvreader)
-   for row in csvreader:
-      if "Action" in row[21]: # Only look at action movies
-         rows.append(row)
-
-   print(Style.BRIGHT + "\n-------------------- Retrieved Data --------------------\n" + Style.RESET_ALL)
-   print(Style.BRIGHT + Back.WHITE + Fore.BLACK + "Total no. of rows:" + Style.RESET_ALL + " " + str(csvreader.line_num))
-   print(Style.BRIGHT + Back.WHITE + Fore.BLACK + "Field names:" + Style.RESET_ALL + " " + ", ".join(fields))
-
-   print(Style.BRIGHT + Back.WHITE + Fore.BLACK + '\nFirst 5 rows are:\n' + Style.RESET_ALL)
-
 print(Style.BRIGHT + "\nReading data file..." + Style.RESET_ALL)
 
 # Attempt to write to file, handling errors
 try:
    # Encoding (UTF-8) *has* to be specified for Python to work with it
    with open(f"{filename if filename else "movies"}.csv", "r", encoding="utf-8") as file:
-      main_loop(file)
+      read_data(file)
 except FileNotFoundError:
    print(Style.BRIGHT + Back.RED + "Dataset file could not be found. Make sure it exists in the directory" + Style.RESET_ALL)   
 except IOError as e:
