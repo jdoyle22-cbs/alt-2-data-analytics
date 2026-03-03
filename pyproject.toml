@@ -1,0 +1,14 @@
+[project]
+name = "ALT2-Data-Analytics"
+version = 1.0
+description="Project for LCCS ALT2"
+readme="README.md"
+authors = [
+    {name = "James Doyle"}
+]
+dependencies=["kagglehub==1.0.0", "rich==14.3.3", "matplotlib==3.10.8", "ruff==0.15.4"]
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "pep621"

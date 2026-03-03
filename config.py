@@ -1,14 +1,11 @@
 import configparser
 
-def read_config():
+"""Read the configuration file"""
+def read_config() -> dict[str, str | bool]:
     config = configparser.ConfigParser()
-    config.read('config.ini') # Read the configuration file
-
-    # Accessing values
-    debug = config.getboolean('General', 'debug')
-    genre = config.get('General', 'genre')
+    config.read('./config.ini') # Read the configuration file
 
     return {
-        'debug': debug,
-        'genre': genre
+        'debug': bool(config['general']['debug']),
+        'genre': str(config['general']['genre'])
     }
