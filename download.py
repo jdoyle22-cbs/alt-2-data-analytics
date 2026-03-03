@@ -17,7 +17,7 @@ def download_data() -> list[bool | str]:
         elif choice == True:
             try:
                 # Use Kaggle's library to download it
-                path = kagglehub.dataset_download("tmdb/tmdb-movie-metadata", output_dir="./data")
+                path = kagglehub.dataset_download("tmdb/tmdb-movie-metadata", path="tmdb_5000_movies.csv", output_dir="./data")
                 console.print(f"Path to dataset files: {path}", style="bold")
             except Exception as e:
                 return [False, "The following error occurred: " + str(e)]
