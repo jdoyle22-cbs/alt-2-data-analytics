@@ -60,4 +60,4 @@ genre = "Romance" # Capitals don't matter, but spelling does
 
 The program can be checked by the linter by running `ruff check`.
 
-The tests can be run by running `python test.py`.
+Tests can be run by running `python tests/{name}.py`, where `{name}` is the filename of the file you wish to run, e.g. `python tests/maths.py`.
