@@ -55,3 +55,9 @@ You can edit the `config.ini` file to change the parameters. For example, you ca
 [general]
 genre = "Romance" # Capitals don't matter, but spelling does
 ```
+
+## Development
+
+The program can be checked by the linter by running `ruff check`.
+
+The tests can be run by running `python test.py`.

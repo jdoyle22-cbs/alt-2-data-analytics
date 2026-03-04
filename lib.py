@@ -7,10 +7,18 @@ console = Console()
 """
 Return the mode of a list of numbers
 """
-def mode(data: list[int | float]) -> int | float:
+def mode(data: list[int | float], check_data_validity: bool = False) -> int | float:
     # Make sure we actually have data to use
     if not data:
         raise ValueError("Cannot compute mode of empty list")
+
+    # Make sure all data values are numbers
+    if check_data_validity:
+        for i in data:
+            try:
+                float(i)
+            except Exception:
+                raise ValueError("Encountered value that is not a number in the list")
     
     cnt = Counter(data)
     return cnt.most_common(1)[0][0]
@@ -36,11 +44,18 @@ def median(data: list[int | float]) -> int | float:
 """
 Return the mean value of a list of number values
 """
-def mean(data: list[int | float]) -> int | float:
+def mean(data: list[int | float], check_data_validity: bool = False) -> int | float:
     n: int = len(data)
     
     if not data or n == 0: # If there's no data
         raise ValueError("Cannot compute mean of empty list")
+
+    if check_data_validity:
+        for i in data:
+            try:
+                float(i)
+            except Exception:
+                raise ValueError("Encountered value that is not a number in the list")
     
     # Calculating mean is very simple
     # Sum of values divided by number of values
