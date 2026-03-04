@@ -30,7 +30,8 @@ def display_data(genre_revenues: list[float], other_revenues: list[float]):
     console.print()
 
     if Confirm.ask("[bold]Show a graph of this data?[/]"):
-        print()  # Padding
+        console.print("[bold yellow]Close the graph window to continue program execution[/]")
+        console.print()  # Padding
         # Create bar chart
         plt.bar(  # pyright: ignore[reportUnknownMemberType] Can't change a library
             ["Mode", "Median", "Mean"],
@@ -65,7 +66,8 @@ def display_data(genre_revenues: list[float], other_revenues: list[float]):
     console.print()
 
     if Confirm.ask("[bold]Show a graph of this data?[/]"):
-        print()  # Padding
+        console.print("[bold yellow]Close the graph window to continue program execution[/]")
+        console.print()  # Padding
         # Create bar chart
         plt.bar(  # pyright: ignore[reportUnknownMemberType] Same as above
             ["Mode", "Median", "Mean"],
@@ -83,6 +85,8 @@ def display_data(genre_revenues: list[float], other_revenues: list[float]):
         plt.show()  # pyright: ignore[reportUnknownMemberType]
 
     if Confirm.ask("[bold]Show a combined graph of all data?[/]"):
+        console.print("[bold yellow]Close the graph window to continue program execution[/]")
+        console.print()  # Padding
         bar_colors = [
             "tab:blue",
             "tab:orange",
