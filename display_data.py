@@ -95,11 +95,11 @@ def display_data(genre_revenues: list[float], other_revenues: list[float]):
         plt.bar(  # pyright: ignore[reportUnknownMemberType] Same as above
             [
                 f"{genre} Mode",
-                f"Non{genre} Mode",
+                f"Non-{genre} Mode",
                 f"{genre} Median",
-                f"Non{genre} Median",
+                f"Non-{genre} Median",
                 f"{genre} Mean",
-                f"Non{genre} Mean",
+                f"Non-{genre} Mean",
             ],
             [
                 genre_mode_result,
