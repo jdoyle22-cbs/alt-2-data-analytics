@@ -10,6 +10,7 @@ from matplotlib import ticker
 def display_data(genre_revenues: list[float], other_revenues: list[float]):
     config: dict[str, str | bool] = read_config()
     genre: str = str(config["genre"]).strip().replace('"', "")
+    plt.rcParams['figure.figsize'] = [12, 8] # Set larger figure size to stop text clipping off window
 
     # Genre Variables
     try:
@@ -27,8 +28,8 @@ def display_data(genre_revenues: list[float], other_revenues: list[float]):
     console.print(f"[bold]{genre} Movies - Median Revenue:[/]", genre_median_result)
     console.print(f"[bold]{genre} Movies - Mean Revenue:[/]", genre_mean_result)
     console.print()
-    show_genre_graph = Confirm.ask("[bold]Show a graph of this data?[/]")
-    if show_genre_graph:
+
+    if Confirm.ask("[bold]Show a graph of this data?[/]"):
         print()  # Padding
         # Create bar chart
         plt.bar(  # pyright: ignore[reportUnknownMemberType] Can't change a library
@@ -62,8 +63,8 @@ def display_data(genre_revenues: list[float], other_revenues: list[float]):
     console.print(f"[bold]Non-{genre} Movies - Median Revenue:[/]", other_median_result)
     console.print(f"[bold]Non-{genre} Movies - Mean Revenue:[/]", other_mean_result)
     console.print()
-    show_genre_graph = Confirm.ask("[bold]Show a graph of this data?[/]")
-    if show_genre_graph:
+
+    if Confirm.ask("[bold]Show a graph of this data?[/]"):
         print()  # Padding
         # Create bar chart
         plt.bar(  # pyright: ignore[reportUnknownMemberType] Same as above
@@ -81,8 +82,7 @@ def display_data(genre_revenues: list[float], other_revenues: list[float]):
         )
         plt.show()  # pyright: ignore[reportUnknownMemberType]
 
-    show_combined_graph = Confirm.ask("[bold]Show a combined graph of all data?[/]")
-    if show_combined_graph:
+    if Confirm.ask("[bold]Show a combined graph of all data?[/]"):
         bar_colors = [
             "tab:blue",
             "tab:orange",
