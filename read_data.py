@@ -21,6 +21,10 @@ def read_data(file: Iterable[str]) -> None:
             console.print(f"Skipping empty row {row_num}", style="bold")
             continue
 
+        # Debug
+        if config["debug"]:
+            print(row.get("genres"))
+
         # Limit to action movies
         if isinstance(config["genre"], str) and config["genre"].lower() in row["genres"].lower():
             genre_movie_count += 1

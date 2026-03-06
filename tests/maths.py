@@ -1,8 +1,3 @@
-"""
-While usually tests would be in their own folder, there are few tests for this program
-and thus they are in one root-level file.
-"""
-
 import unittest
 from pathlib import Path
 import sys

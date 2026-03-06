@@ -9,7 +9,7 @@ from matplotlib import ticker
 
 def display_data(genre_revenues: list[float], other_revenues: list[float]):
     config: dict[str, str | bool] = read_config()
-    genre: str = str(config["genre"]).strip().replace('"', "")
+    genre: str = str(config["genre"])
     plt.rcParams['figure.figsize'] = [12, 8] # Set larger figure size to stop text clipping off window
 
     # Genre Variables

@@ -60,3 +60,10 @@ def mean(data: list[int | float], check_data_validity: bool = False) -> int | fl
     # Calculating mean is very simple
     # Sum of values divided by number of values
     return sum(data) / (n)
+
+# Custom Error
+class UserTerminationError(KeyboardInterrupt):
+    def __init__(self, value):
+        self.value = value
+        message = f"User terminated program execution."
+        super().__init__(message)
