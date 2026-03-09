@@ -29,9 +29,9 @@ Hypothesis: {genre} movies make the most money out of any genre
 
 data_download_result = download_data()  # Prompt user to redownload data if they wish
 
-if not data_download_result[0] and data_download_result[1] != "":
-    console.print("Exiting due to error...", style="bold white on red")
-    exit(0)
+#if not data_download_result[0] and data_download_result[1] != "":
+#   console.print("Exiting due to error...", style="bold white on red")
+#    exit(0)
 
 console.print("Reading data file...", style="bold")
 

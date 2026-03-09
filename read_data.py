@@ -22,7 +22,7 @@ def read_data(file: Iterable[str]) -> None:
             continue
 
         # Debug
-        if config["debug"]:
+        if config["debug"] == True:
             print(row.get("genres"))
 
         # Limit to action movies

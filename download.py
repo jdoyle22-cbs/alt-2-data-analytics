@@ -2,6 +2,10 @@ import kagglehub # pyright: ignore[reportMissingTypeStubs] Ignored as it doesn't
 from rich.prompt import Confirm
 from sys import exit
 from lib import console
+from config import read_config
+
+config: dict[str, str | bool] = read_config()
+filepath: str = str(config["data_filename"])
 
 """
 Downloads the dataset from Kaggle
@@ -11,13 +15,13 @@ def download_data() -> tuple[bool, str]:
     try:
         # Make sure the user wants to do this, as it's wasteful if not needed
         choice = Confirm.ask("[bold]Download the dataset from Kaggle?[/]")
-        if choice == False:
+        if not choice:
             # Skip if user doesn't want to
             return (False, "")
-        elif choice == True:
+        elif choice:
             try:
                 # Use Kaggle's library to download it
-                path = kagglehub.dataset_download("tmdb/tmdb-movie-metadata", path="tmdb_5000_movies.csv", output_dir="./data")
+                path = kagglehub.dataset_download("tmdb/tmdb-movie-metadata", path=filepath, output_dir="./data")
                 console.print(f"Path to dataset files: {path}", style="bold")
             except Exception as e:
                 return (False, "The following error occurred: " + str(e))
