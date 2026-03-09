@@ -18,10 +18,8 @@ def download_data() -> tuple[bool, str]:
         # Make sure the user wants to do this, as it's wasteful if not needed
         choice = Confirm.ask("[bold]Download the dataset from Kaggle?[/]")
         if not choice:
-        if not choice:
             # Skip if user doesn't want to
             return (False, "")
-        elif choice:
         elif choice:
             try:
                 # Use Kaggle's library to download it
