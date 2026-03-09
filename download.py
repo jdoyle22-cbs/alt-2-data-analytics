@@ -1,4 +1,4 @@
-import kagglehub # pyright: ignore[reportMissingTypeStubs] Ignored as it doesn't really matter, and adding them clogs up the main folder
+import kagglehub  # pyright: ignore[reportMissingTypeStubs] Ignored as it doesn't really matter, and adding them clogs up the main folder
 from rich.prompt import Confirm
 from sys import exit
 from lib import console
@@ -10,14 +10,18 @@ filepath: str = str(config["data_filename"])
 """
 Downloads the dataset from Kaggle
 """
+
+
 def download_data() -> tuple[bool, str]:
     # Exception handler to catch keyboard interrupts (CTRL+C)
     try:
         # Make sure the user wants to do this, as it's wasteful if not needed
         choice = Confirm.ask("[bold]Download the dataset from Kaggle?[/]")
         if not choice:
+        if not choice:
             # Skip if user doesn't want to
             return (False, "")
+        elif choice:
         elif choice:
             try:
                 # Use Kaggle's library to download it
@@ -25,11 +29,13 @@ def download_data() -> tuple[bool, str]:
                 console.print(f"Path to dataset files: {path}", style="bold")
             except Exception as e:
                 return (False, "The following error occurred: " + str(e))
-                
+
             return (True, "File was successfully downloaded.")
-        
+
         # If we've got to this point, return an error because something has gone very wrong
         return (False, "Something went wrong.")
     except KeyboardInterrupt:
-        console.print("\nTerminating program due to keyboard interrupt...", style="bold yellow")
+        console.print(
+            "\nTerminating program due to keyboard interrupt...", style="bold yellow"
+        )
         exit(-1)
